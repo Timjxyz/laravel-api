@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Category;
 use App\Tag;
+use Carbon\Carbon;
 class PostController extends Controller
 {
     /**
@@ -18,7 +19,11 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::all();
-        return view('admin.post.index', compact('posts'));
+        $endOfCurrentMonth = Carbon::now()->endOfDay()->endOfMonth();
+        $now = Carbon::now();
+        $diffInDays = $endOfCurrentMonth->diffInDays($now);
+        
+        return view('admin.post.index', compact('posts','diffInDays'));
 
     }
 
@@ -85,7 +90,11 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        return view('admin.post.show', compact('post'));
+        $now = Carbon::now();
+        $postDateTime = Carbon::create($post->created_at);
+        $diffInDays = $now->diffInDays($postDateTime);
+
+        return view('admin.post.show', compact('post', 'diffInDays'));
     }
 
     /**

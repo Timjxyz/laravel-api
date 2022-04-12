@@ -1,14 +1,18 @@
 <template>
 <!-- vista in front di vue -->
   <div>
-      <h1>Work in progress</h1>
-      <h2>Pagina in elaborazione</h2>
+     <Main/>
   </div>
 </template>
 
 <script>
+ import Main from '../components/Main';
 export default {
-    name: 'App'
+  name: 'App',
+  components: {
+    Main,
+      
+  }
 }
 </script>
 

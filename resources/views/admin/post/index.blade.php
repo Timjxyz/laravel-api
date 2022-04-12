@@ -44,5 +44,6 @@
                   </table>
             </div>
         </div>
+        <h2>Alla fine del mese mancano: {{$diffInDays}} giorni</h2>
     </div>
 @endsection
